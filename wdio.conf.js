@@ -1,8 +1,15 @@
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
+const projectPath = require('path')
+const androidAppPath = projectPath.join(process.cwd(), "app/Android-MyDemoAppRN.1.3.0.build-244.apk")
 
-
-exports.config = {
-
+export const config = {
+    //
+    // ====================
+    // Runner Configuration
+    // ====================
+    // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
     port: 4723,
     //
@@ -17,8 +24,9 @@ exports.config = {
     // worker process. In order to have a group of spec files run in the same worker
     // process simply enclose them in an array within the specs array.
     //
-    // The path of the spec files will be resolved relative from the directory of
-    // of the config file unless it's absolute.
+    // If you are calling `wdio` from an NPM script (see https://docs.npmjs.com/cli/run-script),
+    // then the current working directory is where your `package.json` resides, so `wdio`
+    // will be called from there.
     //
     specs: [
         './test/specs/**/*.js'
@@ -52,19 +60,11 @@ exports.config = {
     capabilities: [{
         // capabilities for local Appium web tests on an Android Emulator
         platformName: 'Android',
-        // browserName: 'Chrome',
-        'appium:automationName': 'UiAutomator2',
-        'appium:autoGrantPermissions': true,
-
+        //browserName: 'Chrome',
         'appium:deviceName': 'Pixel 6a API 30',
         'appium:platformVersion': '11.0',
-
-        // 'appium:deviceName': 'Galaxy S23 Ultra',
-        // 'appium:udid': 'R5CW3044ZYP',
-        // 'appium:platformVersion': '14.0',
-
-        // 'appium:app': "D:\\appium_demo\\app\\demo_camera_app.apk",
-        'appium:app': "D:\\appium_demo\\app\\demoAndroidApp.apk",
+        'appium:automationName': 'UIAutomator2',
+        "appium:app": androidAppPath
     }],
 
     //
@@ -98,7 +98,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: '',
+    baseUrl: '/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -114,12 +114,12 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    // services: ['appium'],
     services: [
         ['appium' , {
       args: {
         address: 'localhost',
-        port: 4723
+        port: 4723,
+        relaxedSecurity: true
       },
       logpath: './'
       }]
@@ -301,17 +301,5 @@ exports.config = {
     * @param {string} newSessionId session ID of the new session
     */
     // onReload: function(oldSessionId, newSessionId) {
-    // }
-    /**
-    * Hook that gets executed before a WebdriverIO assertion happens.
-    * @param {object} params information about the assertion to be executed
-    */
-    // beforeAssertion: function(params) {
-    // }
-    /**
-    * Hook that gets executed after a WebdriverIO assertion happened.
-    * @param {object} params information about the assertion that was executed, including its results
-    */
-    // afterAssertion: function(params) {
     // }
 }

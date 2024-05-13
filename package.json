@@ -1,22 +1,20 @@
 {
-    "name": "webdriverio-tests",
-    "version": "0.1.0",
-    "private": true,
-    "devDependencies": {
-        "@wdio/appium-service": "^8.27.0",
-        "@wdio/cli": "^8.27.1",
-        "@wdio/local-runner": "^8.27.0",
-        "@wdio/mocha-framework": "^8.27.0",
-        "@wdio/spec-reporter": "^8.27.0",
-        "appium": "^2.0.1",
-        "appium-uiautomator2-driver": "^2.37.0",
-        "appium-xcuitest-driver": "^4.16.12",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.3.3"
-    },
-    "scripts": {
-        "wdioAndroid": "wdio run config/android-wdio.conf.js",
-        "wdioIos": "wdio run config/ios-wdio.conf.js",
-        "wdio": "wdio run ./wdio.conf.js"
-    }
+  "name": "my-new-project",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/appium-service": "^8.23.4",
+    "@wdio/cli": "^8.23.4",
+    "@wdio/local-runner": "^8.23.4",
+    "@wdio/mocha-framework": "^8.23.1",
+    "@wdio/spec-reporter": "^8.23.1",
+    "appium-uiautomator2-driver": "^2.34.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.4"
+  },
+  "scripts": {
+    "wdio": "wdio run wdio.conf.js"
+  },
+  "dependencies": {
+    "appium": "^2.2.3"
+  }
 }
