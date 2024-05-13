@@ -22,7 +22,11 @@ export const config = {
         //browserName: 'Chrome',
         'appium:deviceName': 'Pixel 6a API 30',
         'appium:platformVersion': '11.0',
-        'appium:automationName': 'UIAutomator2',
+        'appium:automationName': 'UIAutomator2', // XCUITest for iOS
+        'appium:autoGrantPermissions': true,
+        'appium:newCommandTimeout': 240,
+        // 'appium:udid': 'R5CW3044ZYP', // only for real device
+
         "appium:app": androidAppPath
     }],
 
@@ -44,11 +48,18 @@ export const config = {
     ],
 
     framework: 'mocha',
-    reporters: ['spec'],
+    // reporters: ['spec'],
+    reporters: [['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: true,
+    }]],
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000
     },
+
+    maxInstances: 1
 
     /**
      * Gets executed once before all workers get launched.
