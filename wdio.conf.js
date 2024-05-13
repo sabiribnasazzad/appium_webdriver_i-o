@@ -2,7 +2,7 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
 const projectPath = require('path')
-const androidAppPath = projectPath.join(process.cwd(), "app/Android-MyDemoAppRN.1.3.0.build-244.apk")
+const androidAppPath = projectPath.join(process.cwd(), "app/android_demo_app_sauce_lab.apk")
 
 export const config = {
     //
