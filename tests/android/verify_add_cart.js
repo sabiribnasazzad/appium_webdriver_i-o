@@ -14,7 +14,6 @@ describe("Test navigation to catalog", () => {
     it("Add items to cart & proceed to checkout", async() => {
 
         const productPrice = await $(addToCart.itemPrice).getText();
-        console.log('Total Price Actual', parseFloat(productPrice.slice(1)) * 2);
         await $(addToCart.redCircle).click();
         await $(addToCart.plusBtn).click();
         await $(addToCart.addCartBtn).click();
